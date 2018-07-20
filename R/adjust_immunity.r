@@ -61,12 +61,6 @@ adjust_immunity <- function(survey, countries, immunity, n = 1, age.limits, mode
           ## calculate adjImm = 1 -
           ret <- c(ret, 1 - Re(eigen(mixing_immunised)$values[1])/Re(eigen(mixing_normalised)$values[1]))
         }
-        for (name in c("normalisation", "mean.contacts"))
-        {
-          norm[[name]] <- c(norm[[name]], vapply(mixing$matrices, function(x) {
-            if (name %in% names(x)) x[[name]] else NA_real_
-          }, .0))
-        }
     } else if (model == "homogeneous")
     {
         ## create a mixing matrix to get the correct demography
