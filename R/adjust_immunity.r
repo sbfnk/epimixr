@@ -8,75 +8,31 @@
 ##' @importFrom socialmixr contact_matrix
 ##' @author Sebastian Funk
 ##' @export
-adjust_immunity <- function(survey, countries, immunity, n = 1, age.limits, model = c("age-specific", "homogeneous"), sample, ...)
+adjust_immunity <- function(mixing, demography, immunity)
 {
-    if (missing(survey))
-    {
-        stop("'survey' missing.")
-    }
-
-    if (missing(countries)) countries <- c()
-
-    norm <- list()
-
-    if (!missing(immunity) && is.vector(immunity)) {
-      limits <- names(immunity)
-      immunity <- data.frame(n=1:n, t(immunity))
-      immunity$n <- NULL
-      colnames(immunity) <- limits
-    }
-
-    if (missing(age.limits))
-    {
-        if (missing(immunity) || any(is.na(as.integer(colnames(immunity)))))
-        {
-            stop("Either 'age.limits' or 'immunity' must be given (as integers), otherwise I don't know what age groups to use.")
-        } else age.limits <- as.integer(colnames(immunity))
-    } else {
-        age.limits <- as.integer(age.limits)
-    }
-
-    if (any(is.na(age.limits)) || any(diff(age.limits) <= 0))
-    {
-        stop("'age.limits' must be given (either directly or as names of the 'immunity' vector) as an increasing ",
-             "integer vector of lower age limits.")
-    }
-
     ret <- c()
-    if (model == "age-specific")
+
+    if (!("matrices" %in% names(mixing)))
     {
-        mixing <-
-            contact_matrix(survey, countries = countries, n = n, quiet = TRUE, age.limits = age.limits, ...)
-        if (n == 1)
-        {
-            mixing$matrices <- list(mixing)
-        }
-        for (i in seq_along(mixing$matrices))
-        {
-          mixing_i <- mixing$matrices[[i]]
-          ## rescale to a_{ij} n_j delta_i
-          mixing_normalised <- t(t(mixing_i$matrix * mixing$demography$proportion) / mixing$demography$proportion)
-          ## rescale by immunity
-          mixing_immunised <- mixing_normalised * (1 - unlist(immunity[i, ]))
-          ## calculate adjImm = 1 -
-          ret <- c(ret, 1 - Re(eigen(mixing_immunised)$values[1])/Re(eigen(mixing_normalised)$values[1]))
-        }
-    } else if (model == "homogeneous")
-    {
-        ## create a mixing matrix to get the correct demography
-        mixing <- contact_matrix(survey, split = TRUE, n = 1, quiet = TRUE, age.limits = age.limits, ...)
-        ## calculate homogeneous probability v of being immune
-        immunity_hom <-
-            apply(immunity, 1, function(x) sum(mixing$demography$population * x)) /
-            sum(mixing$demography$population)
-        ## calculate R = (1-v) R_0
-        ret <- c(ret, immunity_hom)
+        mixing$matrices <- list(mixing)
     }
+    if (is.vector(immunity))
+    {
+        immunity <- matrix(rep(immunity, length(mixing$matrices)), byrow=TRUE,
+                           nrow=length(mixing$matrices))
+    }
+    ret <- lapply(seq_along(mixing$matrices), function(x)
+    {
+        ## rescale to a_{ij} n_j delta_i
+        mixing_normalised <-
+            t(t(mixing$matrices[[x]]$matrix * demography$population) /
+              demography$population)
+        ## rescale by immunity
+        mixing_immunised <- mixing_normalised * (1 - immunity[x, ])
+        ## calculate adjImm = 1 -
+        return(1 - Re(eigen(mixing_immunised)$values[1])/
+               Re(eigen(mixing_normalised)$values[1]))
+    })
 
-    return(ret)
-}
-
-adjust_immunity_wrapper <- function(...)
-{
-    adjust_immunity(...)
+    return(unlist(ret))
 }
