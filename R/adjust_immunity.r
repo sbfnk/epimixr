@@ -14,7 +14,7 @@ adjust_immunity <- function(mixing, demography, immunity)
 
     if (!("matrices" %in% names(mixing)))
     {
-        mixing <- list(matrices=list(mixing))
+        mixing$matrices <- list(mixing$matrix)
     }
     if (is.vector(immunity))
     {
