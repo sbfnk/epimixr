@@ -12,7 +12,9 @@ adjust_immunity <- function(mixing, demography, immunity)
 {
     ret <- c()
 
-    if (!("matrices" %in% names(mixing)))
+    if (!("list" %in% class(mixing))) {
+        mixing <- list(matrices=list(mixing))
+    } else if (!("matrices" %in% names(mixing)))
     {
         mixing$matrices <- list(mixing$matrix)
     }
