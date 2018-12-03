@@ -41,5 +41,5 @@ adjust_immunity <- function(mixing, demography, immunity)
                Re(eigen(mixing_normalised)$values[1]))
     })
 
-    return(ret)
+    return(unlist(ret))
 }
