@@ -29,13 +29,13 @@ adjust_immunity <- function(mixing, demography, immunity)
         if (demography_given) {
             ## rescale to a_{ij} n_j delta_i
             mixing_normalised <-
-                t(t(mixing$matrices[[x]] * demography$population) /
-                  demography$population)
+                t(t(mixing$matrices[[x]] * demography) /
+                  demography)
         } else {
             mixing_normalised <- mixing$matrices[[x]]
         }
         ## rescale by immunity
-        mixing_immunised <- mixing_normalised * (1 - immunity[x, ])
+        mixing_immunised <- t(t(mixing_normalised) * (1 - immunity[x, ]))
         ## calculate adjImm = 1 -
         return(1 - Re(eigen(mixing_immunised)$values[1])/
                Re(eigen(mixing_normalised)$values[1]))
