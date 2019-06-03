@@ -1,3 +1,13 @@
+##' Project immunity from a baseline via vaccination coverage rates
+##'
+##' @title Project immunity from a baseline
+##' @param baseline.immunity baseline immunity, as a named vector; the names correspond to lower limits of the age groups, and the vector itself to the corresponding levels of immunity.
+##' @param coverage coverage with multiple vaccine doses, given as a matrix in which each row is a dose and each column a year; the first column is the coverage in the year the serological study was conducted
+##' @param schedule the ages at which vaccines are given (in years).
+##' @param maternal.immunity the proportion maternally immune.
+##' @param efficacy vaccine efficacy.
+##' @return a data frame of immunity levels by age group (as in \code{baseline.immunity}).
+##' @author Sebastian Funk <sebastian.funk@lshtm.ac.uk>
 project_immunity <- function(baseline.immunity, coverage, schedule, maternal.immunity, efficacy)
 {
   ## checks
