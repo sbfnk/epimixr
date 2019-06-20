@@ -10,6 +10,7 @@
 ##' @param efficacy vaccine efficacy.
 ##' @return a data frame of immunity levels by age group (as in \code{baseline.immunity}).
 ##' @author Sebastian Funk <sebastian.funk@lshtm.ac.uk>
+##' @export
 project_immunity <- function(baseline.immunity, baseline.year, year, coverage, schedule, maternal.immunity, efficacy)
 {
   ## checks

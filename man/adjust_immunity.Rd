@@ -9,7 +9,7 @@ adjust_immunity(mixing, demography, immunity)
 \arguments{
 \item{mixing}{A mixing matrix or set of mixing matrices, as returned by \code{\link{contact_matrix}}}
 
-\item{demography}{A data frame with a \code{population} column, indicating the populations of the age groups given in \code{immunity}}
+\item{demography}{A vector of populations (absolute or relative) of the age groups given in \code{immunity}; if it is not given, it will be assumed that the mixing matrix is already normalised}
 
 \item{immunity}{immunity profiles; this should be given as a vector of the same length as the number of rows/columns of the mixing matrix (or matrices); if given as a vector, each element of the vector should contain a value <1 representing the proportion of the population immune in the corresponding age group; any element set to "herd" will be set to 1-1/R0; if given as a data.frame, the number of rows need to be \code{n}, and every row will correspond to one of the samples}
 }
