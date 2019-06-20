@@ -64,9 +64,9 @@ project_immunity <- function(baseline.immunity, baseline.year, year, coverage, s
         ## move all one age group up
         df$lower.age.limit <- df$lower.age.limit + 1
         ## implement vaccination schedule
-        df <- df[df$lower.age.limit > 2, ]
+        df <- df[df$lower.age.limit > schedule[1] + 1, ]
         first_two_years <-
-          data.frame(lower.age.limit=seq(0, 2),
+          data.frame(lower.age.limit=seq(0, schedule[1] + 1),
                      immunity=c(rep(maternal.immunity, schedule[1]),
                                 coverage[1, as.character(calc.year)] *
                                 scaling_factor,
