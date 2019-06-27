@@ -77,10 +77,10 @@ project_immunity <- function(baseline.immunity, baseline.year, year, coverage, s
           for (j in seq(2, dim(coverage)[1]))
           {
             after_1st_success <- coverage[j, as.character(calc.year)] -
-              df[df$lower.age.limit==schedule[2] + 1, "immunity"]
+              df[df$lower.age.limit==schedule[j] + 1, "immunity"]
             if (after_1st_success > 0) {
-              df[df$lower.age.limit==schedule[2] + 1, "immunity"] <-
-                df[df$lower.age.limit==schedule[2] + 1, "immunity"] +
+              df[df$lower.age.limit==schedule[j] + 1, "immunity"] <-
+                df[df$lower.age.limit==schedule[j] + 1, "immunity"] +
                 after_1st_success * efficacy
             }
           }
