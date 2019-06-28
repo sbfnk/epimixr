@@ -65,24 +65,27 @@ project_immunity <- function(baseline.immunity, baseline.year, year, coverage, s
         df$lower.age.limit <- df$lower.age.limit + 1
         ## implement vaccination schedule
         df <- df[df$lower.age.limit > schedule[1] + 1, ]
-        first_two_years <-
+        first_years <-
           data.frame(lower.age.limit=seq(0, schedule[1] + 1),
                      immunity=c(rep(maternal.immunity, schedule[1]),
                                 coverage[1, as.character(calc.year)] *
                                 scaling_factor,
                                 coverage[1, as.character(calc.year - 1)] * efficacy))
-        df <- rbind(first_two_years, df)
+        df <- rbind(first_years, df)
         if (dim(coverage)[1] > 1)
         {
           for (j in seq(2, dim(coverage)[1]))
           {
-            after_1st_success <- coverage[j, as.character(calc.year)] -
-              df[df$lower.age.limit==schedule[2] + 1, "immunity"]
-            if (after_1st_success > 0) {
-              df[df$lower.age.limit==schedule[2] + 1, "immunity"] <-
-                df[df$lower.age.limit==schedule[2] + 1, "immunity"] +
-                after_1st_success * efficacy
+            immunised <- 0
+            for (k in seq(1, j-1)) {
+              old_coverage <-
+                coverage[k, as.character(calc.year - schedule[j] + schedule[k])]
+              immunised <- immunised + (1 - immunised) * old_coverage * efficacy
             }
+            df[df$lower.age.limit==schedule[j], "immunity"] <-
+              min(1,
+                  df[df$lower.age.limit==schedule[j], "immunity"] +
+                  (1-immunised) * coverage[j, as.character(calc.year)] * efficacy)
           }
         }
       }
