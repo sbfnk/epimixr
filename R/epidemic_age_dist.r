@@ -35,15 +35,15 @@ epidemic_age_dist <- function(contact.matrix, q,
 
   ## loop until difference between estimates is smaller than tolerance
   while (current.diff > tol) {
-    z <- 1 - exp(- z %*% (q * contact.matrix))
-    last.z <- z
+    rhs <- 1 - exp(- z %*% (q * contact.matrix))
     if (first.run == TRUE) {
       ## run loop at least two times
       current.diff <- tol + 1
       first.run <- FALSE
     } else {
-      current.diff <- sum(abs(last.z-z))
+      current.diff <- sum(abs(rhs - z))
     }
+    z <- rhs
   }
   return(z[1, ])
 }
