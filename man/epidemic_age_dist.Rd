@@ -2,8 +2,7 @@
 % Please edit documentation in R/epidemic_age_dist.r
 \name{epidemic_age_dist}
 \alias{epidemic_age_dist}
-\title{calculates the age distribution in an epidemic setting using the iterative method
-of Wallinga (2006)}
+\title{Calculates the age distribution of an epidemic}
 \usage{
 epidemic_age_dist(mixing, R0, immunity = 0, final.size.start = 0.01,
   tol = 1e-05)
@@ -24,7 +23,7 @@ A matrix of the final size(s) (proportion of susceptibles infected) in each age 
 }
 \description{
 calculates the age distribution in an epidemic setting using the iterative method
-of Wallinga (2006)
+of: J Wallinga, P Teunis, M Kretschmar (2006)  Using Data on Social Contacts to Estimate Age-specific Transmission Parameters for Respiratory-spread Infectious Agents. Am J Epidemiol 164(10), 945-946.
 }
 \examples{
 mixing <- socialmixr::contact_matrix(survey=socialmixr::polymod, age.limits = c(0, 5, 10))

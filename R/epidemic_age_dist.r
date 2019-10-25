@@ -1,8 +1,7 @@
-##' calculates the age distribution in an epidemic setting using the iterative method
-##' of Wallinga (2006)
+##' Calculates the age distribution of an epidemic
 ##'
 ##' calculates the age distribution in an epidemic setting using the iterative method
-##' of Wallinga (2006)
+##' of: J Wallinga, P Teunis, M Kretschmar (2006)  Using Data on Social Contacts to Estimate Age-specific Transmission Parameters for Respiratory-spread Infectious Agents. Am J Epidemiol 164(10), 945-946.
 ##' @param mixing A mixing matrix or set of mixing matrices, as returned by \code{\link{contact_matrix}}
 ##' @param R0 basic reproduction number
 ##' @param immunity proportion immune before the epidemic
