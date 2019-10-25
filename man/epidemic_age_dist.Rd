@@ -5,26 +5,28 @@
 \title{calculates the age distribution in an epidemic setting using the iterative method
 of Wallinga (2006)}
 \usage{
-epidemic_age_dist(contact.matrix, q, child.mixing = NA, immunity = 0,
-  final.size.start = 0.01, tol = 1e-05)
+epidemic_age_dist(mixing, R0, immunity = 0, final.size.start = 0.01,
+  tol = 1e-05)
 }
 \arguments{
-\item{contact.matrix:}{social contact matrix}
+\item{mixing}{A mixing matrix or set of mixing matrices, as returned by \code{\link{contact_matrix}}}
 
-\item{q:}{probability of transmission per contact}
+\item{R0}{basic reproduction number}
 
-\item{child.mixing:}{first entry of contact matrix}
+\item{immunity}{proportion immune before the epidemic}
 
-\item{immunity:}{proportion immune before the epidemic}
+\item{final.size.start}{starting value for inidence}
 
-\item{final.size.start.start:}{starting value for inidence}
-
-\item{tol:}{tolerance for stopping the iteration}
+\item{tol}{tolerance for stopping the iteration}
 }
 \value{
-A vector of the final size (proportion of susceptibles infected) in each age group
+A matrix of the final size(s) (proportion of susceptibles infected) in each age group (one row per matrix contained in \code{mixing})
 }
 \description{
 calculates the age distribution in an epidemic setting using the iterative method
 of Wallinga (2006)
+}
+\examples{
+mixing <- socialmixr::contact_matrix(survey=socialmixr::polymod, age.limits = c(0, 5, 10))
+epidemic_age_dist(mixing, R0=5, immunity=0.50)
 }

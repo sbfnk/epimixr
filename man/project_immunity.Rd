@@ -28,6 +28,12 @@ a data frame of immunity levels by age group (as in \code{baseline.immunity}).
 \description{
 Project immunity from a baseline via vaccination coverage rates
 }
+\examples{
+baseline.immunity <- c(`2`=0.85, `5`=0.9, `10`=0.95)
+coverage <- matrix(rep(0.9, 10), nrow=2)
+colnames(coverage) <- as.character(seq(2015, 2019))
+project_immunity(baseline.immunity, 2018, 2019, coverage = coverage, schedule=c(1, 2), 0.5, 0.95)
+}
 \author{
 Sebastian Funk <sebastian.funk@lshtm.ac.uk>
 }

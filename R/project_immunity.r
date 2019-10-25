@@ -10,7 +10,13 @@
 ##' @param efficacy vaccine efficacy.
 ##' @return a data frame of immunity levels by age group (as in \code{baseline.immunity}).
 ##' @author Sebastian Funk <sebastian.funk@lshtm.ac.uk>
+##' @importFrom stats na.omit
 ##' @export
+##' @examples
+##' baseline.immunity <- c(`2`=0.85, `5`=0.9, `10`=0.95)
+##' coverage <- matrix(rep(0.9, 10), nrow=2)
+##' colnames(coverage) <- as.character(seq(2015, 2019))
+##' project_immunity(baseline.immunity, 2018, 2019, coverage = coverage, schedule=c(1, 2), 0.5, 0.95)
 project_immunity <- function(baseline.immunity, baseline.year, year, coverage, schedule, maternal.immunity, efficacy)
 {
   ## checks
@@ -18,10 +24,14 @@ project_immunity <- function(baseline.immunity, baseline.year, year, coverage, s
   if (missing(baseline.year)) stop("baseline year must be provided")
   if (missing(year)) stop("'year' argument must be provided")
   if (!(year > baseline.year)) stop("'year' must be greater than 'baseline.year'")
-  if (!missing(coverage) && dim(coverage)[1] != length(schedule))
-  {
-    stop("'coverage' must have a row for each element of 'schedule'")
+  if (!missing(coverage)) {
+    if (missing(schedule)) stop("'schedule' must be given if 'coverage' is")
+    if (dim(coverage)[1] != length(schedule)) {
+      stop("'coverage' must have a row for each element of 'schedule'")
+    }
+    if (missing(efficacy)) stop("'efficacy' must be provided if 'coverage' is")
   }
+  if (missing(maternal.immunity)) stop("maternal immunity must be provided")
 
   ## convert baseline to annual immunity
   lower_age_limits <- as.integer(names(baseline.immunity))
@@ -48,7 +58,7 @@ project_immunity <- function(baseline.immunity, baseline.year, year, coverage, s
       min_age <- min_age - 1
       df <-
         rbind(t(c(lower.age.limit=min_age,
-                  immunity=coverage[1, as.character(baseline.year - min_age + 1)] *
+                  immunity=unname(coverage[1, as.character(baseline.year - min_age + 1)]) *
                     efficacy)),
               df)
     }
