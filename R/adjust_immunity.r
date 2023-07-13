@@ -20,9 +20,9 @@
 ##' @export
 ##' @examples
 ##' library("socialmixr")
-##' mixing <- contact_matrix(survey=socialmixr::polymod, age.limits
+##' mixing <- contact_matrix(survey = polymod, age.limits
 ##'   = c(0, 5, 10))
-##' adjust_immunity(mixing, immunity = c(0, 0.5, 0.8))
+##' adjust_immunity(mixing$matrix, immunity = c(0, 0.5, 0.8))
 adjust_immunity <- function(mixing_matrix, immunity, vector = FALSE) {
   ## rescale by immunity
   mixing_immunised <- mixing_matrix %*% diag(1 - immunity)

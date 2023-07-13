@@ -16,7 +16,7 @@
 ##' @examples
 ##' library("socialmixr")
 ##' mixing <- contact_matrix(survey = polymod, age.limits = c(0, 5, 10))
-##' epidemic_age_dist(mixing, r_0 = 5, immunity = 0.50)
+##' epidemic_age_dist(mixing$matrix, r_0 = 5, immunity = 0.50)
 epidemic_age_dist <- function(mixing_matrix, r_0, immunity = 0,
                               final_size_start = 0.01, tol = 1e-5) {
   ## initialise variables

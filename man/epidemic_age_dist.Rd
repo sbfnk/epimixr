@@ -14,7 +14,7 @@ epidemic_age_dist(
 }
 \arguments{
 \item{mixing_matrix}{A mixing matrix or set of mixing matrices, as returned
-by \code{\link{socialmixr::contact_matrix}}}
+by \code{socialmixr::contact_matrix}}
 
 \item{r_0}{basic reproduction number}
 
@@ -37,5 +37,5 @@ Respiratory-spread Infectious Agents. Am J Epidemiol 164(10), 945-946.
 \examples{
 library("socialmixr")
 mixing <- contact_matrix(survey = polymod, age.limits = c(0, 5, 10))
-epidemic_age_dist(mixing, r_0 = 5, immunity = 0.50)
+epidemic_age_dist(mixing$matrix, r_0 = 5, immunity = 0.50)
 }

@@ -31,9 +31,9 @@ or net reproduction number.
 }
 \examples{
 library("socialmixr")
-mixing <- contact_matrix(survey=socialmixr::polymod, age.limits
+mixing <- contact_matrix(survey = polymod, age.limits
   = c(0, 5, 10))
-adjust_immunity(mixing, immunity = c(0, 0.5, 0.8))
+adjust_immunity(mixing$matrix, immunity = c(0, 0.5, 0.8))
 }
 \author{
 Sebastian Funk

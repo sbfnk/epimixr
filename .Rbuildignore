@@ -2,6 +2,6 @@ cran-comments.md
 ^revdep$
 .travis.yml
 ^CRAN-RELEASE$
-.linter
+.lintr
 .github/
 README.Rmd

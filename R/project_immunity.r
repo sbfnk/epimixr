@@ -16,6 +16,7 @@
 ##'   \code{baseline_immunity}).
 ##' @author Sebastian Funk <sebastian.funk@lshtm.ac.uk>
 ##' @importFrom stats na.omit
+##' @importFrom socialmixr reduce_agegroups
 ##' @export
 ##' @examples
 ##' baseline_immunity <- c(`2` = 0.85, `5` = 0.9, `10` = 0.95)
@@ -119,8 +120,9 @@ project_immunity <- function(baseline_immunity, baseline_year, year, coverage,
   }
 
   ## aggregate by age groups
-  df$lower_age_limit <-
-    socialmixr::reduce_agegroups(df$lower_age_limit, union(0, lower_age_limits))
+  df$lower_age_limit <- reduce_agegroups(
+    df$lower_age_limit, union(0, lower_age_limits)
+  )
 
   summarised <- by(df, list(df$lower_age_limit), function(x) {
     c(
