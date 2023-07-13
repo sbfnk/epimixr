@@ -1,20 +1,24 @@
 Epidemiological analysis using mixing matrices in R
-=============
+================
 
-[![Build Status](https://travis-ci.org/sbfnk/epimixr.png?branch=master)](https://travis-ci.org/sbfnk/epimixr) [![codecov](https://codecov.io/github/sbfnk/epimixr/branch/master/graphs/badge.svg)](https://codecov.io/github/sbfnk/epimixr) 
+<!-- badges: start -->
 
-[epimixr](https://github.com/sbfnk/epimixr) is an `R` package that uses social mixing matrices to conduct epidemiological analysis.
+![GitHub R package
+version](https://img.shields.io/github/r-package/v/sbfnk/epimixr)
+[![R-CMD-check](https://github.com/sbfnk/epimixr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sbfnk/epimixr/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/github/sbfnk/epimixr/branch/main/graph/badge.svg?token=vK4TWfgYo0)](https://codecov.io/github/sbfnk/epimixr)
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- badges: end -->
 
-Installation
-==============
+[epimixr](https://github.com/sbfnk/epimixr) is an `R` package that uses
+social mixing matrices to conduct epidemiological analysis.
 
-The current development version can be installed using the `remotes` package
+# Installation
 
-```r
+The current development version can be installed using the `remotes`
+package
+
+``` r
 remotes::install_github("sbfnk/epimixr")
 ```
-
-<!-- Documentation -->
-<!-- ====== -->
-
-<!-- For information on how to use the socialmixr package, see the [vignette](http://sbfnk.github.io/socialmixr/). -->

@@ -4,28 +4,38 @@
 \alias{epidemic_age_dist}
 \title{Calculates the age distribution of an epidemic}
 \usage{
-epidemic_age_dist(mixing, R0, immunity = 0, final.size.start = 0.01,
-  tol = 1e-05)
+epidemic_age_dist(
+  mixing_matrix,
+  r_0,
+  immunity = 0,
+  final_size_start = 0.01,
+  tol = 1e-05
+)
 }
 \arguments{
-\item{mixing}{A mixing matrix or set of mixing matrices, as returned by \code{\link{contact_matrix}}}
+\item{mixing_matrix}{A mixing matrix or set of mixing matrices, as returned
+by \code{socialmixr::contact_matrix}}
 
-\item{R0}{basic reproduction number}
+\item{r_0}{basic reproduction number}
 
 \item{immunity}{proportion immune before the epidemic}
 
-\item{final.size.start}{starting value for inidence}
+\item{final_size_start}{starting value for inidence}
 
 \item{tol}{tolerance for stopping the iteration}
 }
 \value{
-A matrix of the final size(s) (proportion of susceptibles infected) in each age group (one row per matrix contained in \code{mixing})
+A matrix of the final size(s) (proportion of susceptibles infected)
+  in each age group (one row per matrix contained in \code{mixing})
 }
 \description{
-calculates the age distribution in an epidemic setting using the iterative method
-of: J Wallinga, P Teunis, M Kretschmar (2006)  Using Data on Social Contacts to Estimate Age-specific Transmission Parameters for Respiratory-spread Infectious Agents. Am J Epidemiol 164(10), 945-946.
+calculates the age distribution in an epidemic setting using the iterative
+method of: J Wallinga, P Teunis, M Kretschmar (2006)  Using Data on Social
+Contacts to Estimate Age-specific Transmission Parameters for
+Respiratory-spread Infectious Agents. Am J Epidemiol 164(10), 945-946.
 }
 \examples{
-mixing <- socialmixr::contact_matrix(survey=socialmixr::polymod, age.limits = c(0, 5, 10))
-epidemic_age_dist(mixing, R0=5, immunity=0.50)
+library("socialmixr")
+mixing <- contact_matrix(survey = polymod, age.limits = c(0, 5, 10))
+epidemic_age_dist(mixing$matrix, r_0 = 5, immunity = 0.50)
 }

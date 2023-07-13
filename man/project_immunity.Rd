@@ -4,35 +4,50 @@
 \alias{project_immunity}
 \title{Project immunity from a baseline}
 \usage{
-project_immunity(baseline.immunity, baseline.year, year, coverage,
-  schedule, maternal.immunity, efficacy)
+project_immunity(
+  baseline_immunity,
+  baseline_year,
+  year,
+  coverage,
+  schedule,
+  maternal_immunity,
+  efficacy
+)
 }
 \arguments{
-\item{baseline.immunity}{baseline immunity, as a named vector; the names correspond to lower limits of the age groups, and the vector itself to the corresponding levels of immunity.}
+\item{baseline_immunity}{baseline immunity, as a named vector; the names
+correspond to lower limits of the age groups, and the vector itself to the
+corresponding levels of immunity.}
 
-\item{baseline.year}{year at which baseline immunity is taken (corresponding to a column in the \code{coverage} argument)}
+\item{baseline_year}{year at which baseline immunity is taken (corresponding
+to a column in the \code{coverage} argument)}
 
 \item{year}{year to project to}
 
-\item{coverage}{coverage with multiple vaccine doses, given as a matrix in which each row is a dose and each (named) column a year}
+\item{coverage}{coverage with multiple vaccine doses, given as a matrix in
+which each row is a dose and each (named) column a year}
 
 \item{schedule}{the ages at which vaccines are given (in years).}
 
-\item{maternal.immunity}{the proportion maternally immune.}
+\item{maternal_immunity}{the proportion maternally immune.}
 
 \item{efficacy}{vaccine efficacy.}
 }
 \value{
-a data frame of immunity levels by age group (as in \code{baseline.immunity}).
+a data frame of immunity levels by age group (as in
+  \code{baseline_immunity}).
 }
 \description{
 Project immunity from a baseline via vaccination coverage rates
 }
 \examples{
-baseline.immunity <- c(`2`=0.85, `5`=0.9, `10`=0.95)
-coverage <- matrix(rep(0.9, 10), nrow=2)
+baseline_immunity <- c(`2` = 0.85, `5` = 0.9, `10` = 0.95)
+coverage <- matrix(rep(0.9, 10), nrow = 2)
 colnames(coverage) <- as.character(seq(2015, 2019))
-project_immunity(baseline.immunity, 2018, 2019, coverage = coverage, schedule=c(1, 2), 0.5, 0.95)
+project_immunity(
+  baseline_immunity, 2018, 2019, coverage = coverage,
+  schedule = c(1, 2), 0.5, 0.95
+)
 }
 \author{
 Sebastian Funk <sebastian.funk@lshtm.ac.uk>
