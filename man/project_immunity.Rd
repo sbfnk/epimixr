@@ -19,6 +19,9 @@ project_immunity(
 correspond to lower limits of the age groups, and the vector itself to the
 corresponding levels of immunity.}
 
+\item{baseline_year}{year at which baseline immunity is taken (corresponding
+to a column in the \code{coverage} argument)}
+
 \item{year}{year to project to}
 
 \item{coverage}{coverage with multiple vaccine doses, given as a matrix in
@@ -29,9 +32,6 @@ which each row is a dose and each (named) column a year}
 \item{maternal_immunity}{the proportion maternally immune.}
 
 \item{efficacy}{vaccine efficacy.}
-
-\item{baseline.year}{year at which baseline immunity is taken (corresponding
-to a column in the \code{coverage} argument)}
 }
 \value{
 a data frame of immunity levels by age group (as in
@@ -46,7 +46,7 @@ coverage <- matrix(rep(0.9, 10), nrow = 2)
 colnames(coverage) <- as.character(seq(2015, 2019))
 project_immunity(
   baseline_immunity, 2018, 2019, coverage = coverage,
-  schedule = c(1, 2), 0.5, 0.95)
+  schedule = c(1, 2), 0.5, 0.95
 )
 }
 \author{

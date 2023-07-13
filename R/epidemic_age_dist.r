@@ -5,7 +5,7 @@
 ##' Contacts to Estimate Age-specific Transmission Parameters for
 ##' Respiratory-spread Infectious Agents. Am J Epidemiol 164(10), 945-946.
 ##' @param mixing_matrix A mixing matrix or set of mixing matrices, as returned
-##'   by \code{\link{socialmixr::contact_matrix}}
+##'   by \code{socialmixr::contact_matrix}
 ##' @param r_0 basic reproduction number
 ##' @param immunity proportion immune before the epidemic
 ##' @param final_size_start starting value for inidence

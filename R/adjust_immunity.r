@@ -5,7 +5,7 @@
 ##' information on the basic reproduction number R0 to calculate the effective
 ##' or net reproduction number.
 ##' @param mixing_matrix A mixing matrix, as returned by
-##'   \code{\link{socialmixr::contact_matrix}}
+##'   \code{socialmixr::contact_matrix}
 ##' @param immunity immunity profile; this should be given as a vector of the
 ##'   same length as the number of rows/columns of the mixing matrix; each
 ##'   element of the vector should contain a value <1 representing the
@@ -19,7 +19,8 @@
 ##' @author Sebastian Funk
 ##' @export
 ##' @examples
-##' mixing <- socialmixr::contact_matrix(survey=socialmixr::polymod, age.limits
+##' library("socialmixr")
+##' mixing <- contact_matrix(survey=socialmixr::polymod, age.limits
 ##'   = c(0, 5, 10))
 ##' adjust_immunity(mixing, immunity = c(0, 0.5, 0.8))
 adjust_immunity <- function(mixing_matrix, immunity, vector = FALSE) {

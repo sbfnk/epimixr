@@ -4,7 +4,7 @@
 ##' @param baseline_immunity baseline immunity, as a named vector; the names
 ##'   correspond to lower limits of the age groups, and the vector itself to the
 ##'   corresponding levels of immunity.
-##' @param baseline.year year at which baseline immunity is taken (corresponding
+##' @param baseline_year year at which baseline immunity is taken (corresponding
 ##'   to a column in the \code{coverage} argument)
 ##' @param year year to project to
 ##' @param coverage coverage with multiple vaccine doses, given as a matrix in
@@ -23,7 +23,7 @@
 ##' colnames(coverage) <- as.character(seq(2015, 2019))
 ##' project_immunity(
 ##'   baseline_immunity, 2018, 2019, coverage = coverage,
-##'   schedule = c(1, 2), 0.5, 0.95)
+##'   schedule = c(1, 2), 0.5, 0.95
 ##' )
 project_immunity <- function(baseline_immunity, baseline_year, year, coverage,
                              schedule, maternal_immunity, efficacy) {
@@ -32,7 +32,7 @@ project_immunity <- function(baseline_immunity, baseline_year, year, coverage,
   if (missing(baseline_year)) stop("baseline year must be provided")
   if (missing(year)) stop("'year' argument must be provided")
   if (!(year > baseline_year)) {
-    stop("'year' must be greater than 'baseline.year'")
+    stop("'year' must be greater than 'baseline_year'")
   }
   if (!missing(coverage)) {
     if (missing(schedule)) stop("'schedule' must be given if 'coverage' is")
