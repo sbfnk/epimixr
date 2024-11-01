@@ -1,6 +1,6 @@
 Package: epimixr
 Title: Epidemiological analysis using social mixing matrices
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: person("Sebastian", "Funk", email = "sebastian.funk@lshtm.ac.uk", role = c("aut", "cre"))
 Description: Provides methods to conduct epidemiological analysis using social mixing matrices, such as calculating contact-adjusted immunity levels or age distributions of epidemics. 
 Depends: R (>= 3.5.0)
