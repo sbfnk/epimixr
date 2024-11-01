@@ -1,27 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://epiforecasts.io/epimixr/404.html</loc>
-  </url>
-  <url>
-    <loc>https://epiforecasts.io/epimixr/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://epiforecasts.io/epimixr/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://epiforecasts.io/epimixr/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiforecasts.io/epimixr/reference/adjust_immunity.html</loc>
-  </url>
-  <url>
-    <loc>https://epiforecasts.io/epimixr/reference/epidemic_age_dist.html</loc>
-  </url>
-  <url>
-    <loc>https://epiforecasts.io/epimixr/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiforecasts.io/epimixr/reference/project_immunity.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://epiforecasts.io/epimixr/404.html</loc></url>
+<url><loc>https://epiforecasts.io/epimixr/LICENSE-text.html</loc></url>
+<url><loc>https://epiforecasts.io/epimixr/authors.html</loc></url>
+<url><loc>https://epiforecasts.io/epimixr/index.html</loc></url>
+<url><loc>https://epiforecasts.io/epimixr/news/index.html</loc></url>
+<url><loc>https://epiforecasts.io/epimixr/reference/adjust_immunity.html</loc></url>
+<url><loc>https://epiforecasts.io/epimixr/reference/epidemic_age_dist.html</loc></url>
+<url><loc>https://epiforecasts.io/epimixr/reference/index.html</loc></url>
+<url><loc>https://epiforecasts.io/epimixr/reference/project_immunity.html</loc></url>
 </urlset>
+
